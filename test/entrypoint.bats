@@ -17,6 +17,7 @@ function setup() {
   export NPM_CONFIG_USERCONFIG=$( mktemp )
   export NPM_AUTH_TOKEN=NPM_AUTH_TOKEN
   run $GITHUB_WORKSPACE/entrypoint.sh help
+
   [ "$status" -eq 0 ]
   [ "$(cat $NPM_CONFIG_USERCONFIG)" = "//registry.npmjs.org/:_authToken=NPM_AUTH_TOKEN" ]
 }

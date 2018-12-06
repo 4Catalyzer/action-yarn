@@ -1,6 +1,6 @@
-# GitHub Actions for NPM
+# GitHub Actions for yarn
 
-This Action for [npm](https://www.npmjs.com/) enables arbitrary actions with the `npm` command-line client, including testing packages and publishing to a registry.
+This Action for [yarn](https://www.yarnpkg.com/) enables arbitrary actions with the `yarn` command-line client, including testing packages and publishing to a registry.
 
 ## Usage
 
@@ -13,32 +13,25 @@ workflow "Build, Test, and Publish" {
 }
 
 action "Build" {
-  uses = "actions/npm@master"
+  uses = "4Catalyzer/action-yarn@master"
   args = "install"
 }
 
 action "Test" {
   needs = "Build"
-  uses = "actions/npm@master"
+  uses = "4Catalyzer/action-yarn@master"
   args = "test"
-}
-
-action "Publish" {
-  needs = "Test"
-  uses = "actions/npm@master"
-  args = "publish --access public"
-  secrets = ["NPM_AUTH_TOKEN"]
 }
 ```
 
 ### Secrets
 
-* `NPM_AUTH_TOKEN` - **Optional**. The token to use for authentication with the npm registry. Required for `npm publish` ([more info](https://docs.npmjs.com/getting-started/working_with_tokens))
+- `NPM_AUTH_TOKEN` - **Optional**. The token to use for authentication with the npm registry. Required for `npm publish` ([more info](https://docs.npmjs.com/getting-started/working_with_tokens))
 
 ### Environment variables
 
-* `NPM_REGISTRY_URL` - **Optional**. To specify a registry to authenticate with. Defaults to `registry.npmjs.org`
-* `NPM_CONFIG_USERCONFIG` - **Optional**. To specify a non-default per-user configuration file. Defaults to `$HOME/.npmrc` ([more info](https://docs.npmjs.com/misc/config#npmrc-files))
+- `NPM_REGISTRY_URL` - **Optional**. To specify a registry to authenticate with. Defaults to `registry.npmjs.org`
+- `NPM_CONFIG_USERCONFIG` - **Optional**. To specify a non-default per-user configuration file. Defaults to `$HOME/.npmrc` ([more info](https://docs.npmjs.com/misc/config#npmrc-files))
 
 #### Example
 
@@ -46,7 +39,7 @@ To authenticate with, and publish to, a registry other than `registry.npmjs.org`
 
 ```hcl
 action "Publish" {
-  uses = "actions/npm@master"
+  uses = "4Catalyzer/action-yarn@master"
   args = "publish --access public"
   env = {
     NPM_REGISTRY_URL = "someOtherRegistry.someDomain.net"
